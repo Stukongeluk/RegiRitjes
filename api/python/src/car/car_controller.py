@@ -23,7 +23,7 @@ class CarController():
             """
             return JSONResponse(content=self.car_service.get_all_cars())
 
-        @self.router.get("/{item_id}")
+        @self.router.get("/{car_id}")
         async def get_car_information(car_id: int) -> JSONResponse:
             """Get single car information
 
