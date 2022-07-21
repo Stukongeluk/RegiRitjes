@@ -17,9 +17,15 @@ The only thing you need to do is arrange your own server, an android phone and y
       - [ ] Calculate based on given From-to location
 - [ ] Add comments (Like took short-cut, alternative route, etc.)
 
+## API
+The API is created in Python with FastApi and PysonDb.
 ## Run API locally
-1. `python app.py`
-2. Navigate to localhost:8080
+1. Navigate to `api/python`
+2. Create a Virtual environment (Windows: `python -m venv .venv`) 
+3. Activate venv (Windows: `source .venv/Scripts/Activate`)
+4. Run `pip install -r requirements.txt`
+5. Run the following to start the application: `python src/app.py`
+6. Navigate to localhost:8080
 
 ## API Docs
-You can access to API docs by navigating to the `/docs` endpoint.
+You can access the API locally docs on: [localhost:8080/docs](http://localhost:8080/docs).
