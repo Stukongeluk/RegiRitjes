@@ -2,5 +2,5 @@ from pydantic import BaseModel
 
 from pydantic import BaseModel
 
-class CarIdResponse(BaseModel):
+class ItemIdResponse(BaseModel):
     id: int

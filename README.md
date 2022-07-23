@@ -19,7 +19,8 @@ The only thing you need to do is arrange your own server, an android phone and y
 
 ## API
 The API is created in Python with FastApi and PysonDb.
-## Run API locally
+### Run API locally
+
 1. Navigate to `api/python`
 2. Create a Virtual environment (Windows: `python -m venv .venv`) 
 3. Activate venv (Windows: `source .venv/Scripts/Activate`)
@@ -27,5 +28,17 @@ The API is created in Python with FastApi and PysonDb.
 5. Run the following to start the application: `python src/app.py`
 6. Navigate to localhost:8080
 
-## API Docs
+Optional:
+- Create a config file `config.json` with a `host` and `port` number.
+```json
+{
+  "host": "localhost",
+  "port": "8080"
+}
+```
+The default host is: `localhost` and default port is: `8080` when there is no config file available.
+
+### API Docs
 You can access the API locally docs on: [localhost:8080/docs](http://localhost:8080/docs).
+
+## Mobile app
