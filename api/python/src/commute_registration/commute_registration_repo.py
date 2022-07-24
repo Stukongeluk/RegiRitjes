@@ -4,9 +4,8 @@ from pysondb import db
 from commute_registration.commute_registration_model import CommuteRegistration
 
 class CommuteRegistrationRepo():
-    commute_registration_db: db.JsonDatabase
     def __init__(self) -> None:
-        self.commute_registration_db = db.getDb("registration.json")
+        self.commute_registration_db = db.getDb("registration_data.json")
 
     def find_all_commute_registrations(self) -> List[Dict[str, Any]]:
         return self.commute_registration_db.getAll()

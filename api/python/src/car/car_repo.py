@@ -3,7 +3,6 @@ from car import car_model
 from pysondb import db
 
 class CarRepository():
-    car_db: db.JsonDatabase
     def __init__(self) -> None:
         self.car_db = db.getDb("car_data.json")
 

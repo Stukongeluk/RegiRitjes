@@ -4,14 +4,15 @@ Main python file which runs the Api
 """
 from fastapi import FastAPI
 import uvicorn
-from commute_registration.commute_registration_controller import CommuteRegistrationController
-from commute_registration.commute_registration_service import CommuteRegistrationService
-from commute_registration.commute_registration_repo import CommuteRegistrationRepo
-from car.car_controller import CarController
-from car.car_repo import CarRepository
-from car.car_service import CarService
 import os.path
 import json
+
+from car.car_repo import CarRepository
+from car.car_service import CarService
+from car.car_controller import CarController
+from commute_registration.commute_registration_controller import CommuteRegistrationController
+from commute_registration.commute_registration_repo import CommuteRegistrationRepo
+from commute_registration.commute_registration_service import CommuteRegistrationService
 
 def start_api() -> FastAPI:
     app = FastAPI()
