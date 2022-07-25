@@ -1,4 +1,4 @@
-package com.app.newarchitecture;
+package nl.stukongeluk.regiritjes.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.app.BuildConfig;
-import com.app.newarchitecture.components.MainComponentsRegistry;
-import com.app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import nl.stukongeluk.regiritjes.BuildConfig;
+import nl.stukongeluk.regiritjes.newarchitecture.components.MainComponentsRegistry;
+import nl.stukongeluk.regiritjes.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

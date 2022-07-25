@@ -1,5 +1,5 @@
 # RegiRitjes
-Self-hosted "Ritten registratie" app. Instead of spending your hard-earned cash to keep track of the amount of kilometres you've ridden, why not host and install it yourself for "free"?
+Self-hosted "Ritten registratie" app. Instead of spending your hard-earned cash to keep track of the amount of kilometres you've ridden, why not host, install and use it yourself for "free"?
 
 Suitable for self-employed commuters/freelancers.
 
@@ -18,7 +18,7 @@ The only thing you need to do is arrange your own server, an android phone and y
 - [ ] Add comments (Like took short-cut, alternative route, etc.)
 
 ## API
-The API is created in Python with FastApi and PysonDb.
+The API is created in Python with [FastApi](https://fastapi.tiangolo.com/) and [PysonDb](https://github.com/pysonDB/pysonDB).
 ### Run API locally
 
 1. Navigate to `api/python`
@@ -40,5 +40,12 @@ The default host is: `localhost` and default port is: `8080` when there is no co
 
 ### API Docs
 You can access the API locally docs on: [localhost:8080/docs](http://localhost:8080/docs).
+Depending on your configuration of course, but the `/docs` endpoint should be default :D
+## Android app
+The android app, which connects to the API, is created with [React Native](https://reactnative.dev/)
 
-## Mobile app
+### Run app locally
+Read the instructions [here](https://reactnative.dev/docs/environment-setup)! 
+
+Then run `npx react-native run-android` 
+

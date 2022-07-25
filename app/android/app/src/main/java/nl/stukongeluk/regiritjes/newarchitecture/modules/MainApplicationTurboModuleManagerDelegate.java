@@ -1,4 +1,4 @@
-package com.app.newarchitecture.modules;
+package nl.stukongeluk.regiritjes.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
