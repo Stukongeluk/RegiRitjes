@@ -16,6 +16,7 @@ The only thing you need to do is arrange your own server, an android phone and y
     - [ ] Add End-of-commute mileage
       - [ ] Calculate based on given From-to location
 - [ ] Add comments (Like took short-cut, alternative route, etc.)
+- [ ] Exports to CSV and/or JSON
 
 ## API
 The API is created in Python with [FastApi](https://fastapi.tiangolo.com/) and [PysonDb](https://github.com/pysonDB/pysonDB).
