@@ -1,4 +1,9 @@
+<p align="center">
+  <img width="720" src="docs/regiritjesLogo.svg">
+</p>
+
 # RegiRitjes
+
 Self-hosted "Ritten registratie" app. Instead of spending your hard-earned cash to keep track of the amount of kilometres you've ridden, why not host, install and use it yourself for "free"?
 
 Suitable for self-employed commuters/freelancers.

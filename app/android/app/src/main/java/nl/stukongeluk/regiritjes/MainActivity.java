@@ -1,10 +1,9 @@
 package nl.stukongeluk.regiritjes;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-
-import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 

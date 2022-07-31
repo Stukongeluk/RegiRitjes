@@ -1,4 +1,6 @@
 {
   "name": "RegiRitjes",
-  "displayName": "RegiRitjes"
+  "displayName": "RegiRitjes",
+  "baseUrl": "localhost",
+  "port": 8200
 }
