@@ -6,14 +6,22 @@ import {
   Button,
   FlatList,
   ActivityIndicator,
+  StyleSheet,
+  useColorScheme,
 } from 'react-native';
 import {FAB} from '@rneui/themed';
 import {getAllCars} from '../services/CarsProvider';
-import {ListItem} from '@rneui/themed';
+import {Avatar, Card} from '@rneui/base';
+import {useTheme} from '@react-navigation/native';
+import CarForm from '../components/CarForm';
+
 const CarScreen = ({navigation}) => {
   const [visible, setVisible] = React.useState(true);
+  const [carFormVisible, setCarFormVisible] = React.useState(false);
   const [cars, setCars] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const {colors} = useTheme();
+  const styles = getCarStyles(colors);
 
   React.useEffect(() => {
     const fetchCars = async () => {
@@ -33,7 +41,6 @@ const CarScreen = ({navigation}) => {
 
   return (
     <View style={{flex: 1, justifyContent: 'center'}}>
-      <Text>TOP</Text>
       {isLoading ? (
         <ActivityIndicator size="large" color="#FFF" />
       ) : (
@@ -41,11 +48,26 @@ const CarScreen = ({navigation}) => {
           data={cars}
           renderItem={({item}) => {
             return (
-                <ListItem>
-                  <ListItem.Content>
-                    <ListItem.Title>{item.brand}</ListItem.Title>
-                  </ListItem.Content>
-                </ListItem>
+              <Card containerStyle={styles.baseBackground}>
+                <Card.Title style={styles.baseText}>
+                  {item.brand} {item.model}
+                </Card.Title>
+                <Card.Divider />
+                <View style={styles.cardContainer}>
+                  <Avatar
+                    source={require('../assets/images/defaultCar.png')}
+                    size={64}
+                  />
+                  <View>
+                    <Text style={styles.baseText}>
+                      License plate: {item.licensePlateNumber}
+                    </Text>
+                    <Text style={styles.baseText}>
+                      Build year: {item.buildYear}
+                    </Text>
+                  </View>
+                </View>
+              </Card>
             );
           }}
           ListEmptyComponent={emptyListComponent}
@@ -53,15 +75,40 @@ const CarScreen = ({navigation}) => {
           extraData={cars}
         />
       )}
-      <Text>BOTTOM</Text>
       <FAB
         visible={visible}
         placement="right"
         icon={{name: 'add', color: 'white'}}
         color="#0e92ffff"
+        onPress={() => setCarFormVisible(true)}
       />
+
+      <CarForm
+      open={carFormVisible}
+      onClose={() => setCarFormVisible(false)}
+      intent="add"
+      >
+      </CarForm>
+
     </View>
   );
 };
+
+const getCarStyles = (colors: any) =>
+  StyleSheet.create({
+    baseBackground: {
+      backgroundColor: colors.backgroundColor,
+    },
+    cardContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: colors.backgroundColor,
+    },
+    baseText: {
+      fontFamily: 'Cochin',
+      color: colors.text,
+    },
+  });
 
 export default CarScreen;
