@@ -14,6 +14,7 @@ import {getAllCars} from '../services/CarsProvider';
 import {Avatar, Card} from '@rneui/base';
 import {useTheme} from '@react-navigation/native';
 import CarForm from '../components/CarForm';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CarScreen = ({navigation}) => {
   const [visible, setVisible] = React.useState(true);
@@ -54,10 +55,7 @@ const CarScreen = ({navigation}) => {
                 </Card.Title>
                 <Card.Divider />
                 <View style={styles.cardContainer}>
-                  <Avatar
-                    source={require('../assets/images/defaultCar.png')}
-                    size={64}
-                  />
+                  <Ionicons name={'car-sport-outline'} size={80} color={"#0e92ffff"}/>
                   <View>
                     <Text style={styles.baseText}>
                       License plate: {item.licensePlateNumber}
@@ -79,7 +77,7 @@ const CarScreen = ({navigation}) => {
         visible={visible}
         placement="right"
         icon={{name: 'add', color: 'white'}}
-        color="#0e92ffff"
+        color="#0e92ff"
         onPress={() => setCarFormVisible(true)}
       />
 
