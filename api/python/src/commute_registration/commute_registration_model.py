@@ -16,6 +16,7 @@ class CommuteRegistration(BaseModel):
     startAddress: str
     destinationAddress: str
     startMileage: int
+    endMileage: int
     distanceInKm: int
     routeNotes: str
     type: TravelType

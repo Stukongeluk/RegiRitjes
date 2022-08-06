@@ -4,7 +4,8 @@ from commute_registration.commute_registration_service import CommuteRegistratio
 from commute_registration.commute_registration_request import CommuteRegistrationRequest
 from rest.id_response import ItemIdResponse
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
+from datetime import datetime
 
 class CommuteRegistrationController():
     def __init__(self, commute_registration_service: CommuteRegistrationService) -> None:
@@ -15,16 +16,21 @@ class CommuteRegistrationController():
         )
 
         @self.router.get("/")
-        async def get_all_commute_registrations(car_id: Optional[int] = None) -> JSONResponse:
+        async def get_all_commute_registrations(car_id: Optional[int] = None, export: Optional[bool] = False, before_date: Optional[str] = datetime.now().date, after_date: Optional[str] = '9999-12-12') -> JSONResponse:
             """Get commute registrations
 
             Args:
                 car_id (Optional[int], optional): The car Id which you want the commute registrations of. Defaults to None.
+                csv (Optional[bool], optional): A boolean to determine if it should return a csv export. Defaults to False.
 
             Returns:
                 JSONResponse: A list of the commute registrations in json
             """
-            if car_id:
+            if car_id and export:
+                # TODO: Refactor this and test if it works.
+                content = self.commute_registration_service.get_commute_registration_csv(car_id, before_date, after_date)
+                return StreamingResponse(content)
+            elif car_id:
                 return JSONResponse(content=self.commute_registration_service.get_commute_registrations_by_car_id(car_id))
             return JSONResponse(content=self.commute_registration_service.get_all_commute_registrations())
             
@@ -89,4 +95,3 @@ class CommuteRegistrationController():
 
             return JSONResponse(content=ItemIdResponse(
                 id=response, media_type="application/json"))
-  
