@@ -7,7 +7,10 @@ class CarService():
         self.car_repo = car_repo
 
     def get_all_cars(self) -> List[Dict[str, Any]]:
-        return self.car_repo.find_all_car_information()
+        carList = self.car_repo.find_all_car_information()
+        for cars in carList:
+            cars.update((k, str(v)) for k, v in cars.items() if k == "id")
+        return carList
 
     def get_car_information(self, id: int) -> List[Dict[str, Any]]:
         return self.car_repo.find_car_information(id)

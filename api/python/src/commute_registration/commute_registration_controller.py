@@ -16,7 +16,7 @@ class CommuteRegistrationController():
         )
 
         @self.router.get("/")
-        async def get_all_commute_registrations(car_id: Optional[int] = None, export: Optional[bool] = False, before_date: Optional[str] = datetime.now().date, after_date: Optional[str] = '9999-12-12') -> JSONResponse:
+        async def get_all_commute_registrations(car_id: Optional[int] = None, export: Optional[bool] = False, before_date: Optional[str] = '0001-01-01', after_date: Optional[str] = '9999-12-12') -> JSONResponse:
             """Get commute registrations
 
             Args:

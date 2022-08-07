@@ -13,7 +13,7 @@ This repo contains the code to host your own back-end and the code to compile yo
 The only thing you need to do is arrange your own server, an android phone and you're good to go ;)
 
 ## Features
-- [ ] Add multiple cars
+- [x] Add multiple cars
 - [ ] Add commute information
     - [ ] Add current mileage
     - [ ] Add date of commute

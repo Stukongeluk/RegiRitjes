@@ -11,13 +11,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {FAB} from '@rneui/themed';
-import {getAllCars} from '../services/CarsProvider';
+import {getAllCars} from '../services/CarService';
 import {Avatar, Card} from '@rneui/base';
-import {useTheme} from '@react-navigation/native';
+import {useFocusEffect, useTheme} from '@react-navigation/native';
 import CarForm from '../components/CarForm';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CarDetail from '../components/CarDetail';
+import {storage} from '../services/StorageProvider';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const CarList = ({navigation}) => {
   const [cars, setCars] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const {colors} = useTheme();
+  const [selectedCar, setSelectedCar] = React.useState(null);
   const styles = getCarStyles(colors);
   let refreshing = false;
 
@@ -36,10 +38,24 @@ const CarList = ({navigation}) => {
     setCars(carJson);
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
+      fetchCars();
+      setSelectedCar(storage.getString('selectedCarId'));
+
+      return () => {
+        isActive = false;
+      };
+    }, []),
+  );
+
   React.useEffect(() => {
     fetchCars()
       .catch(error => console.log(error))
       .finally(setIsLoading(false));
+
+    setSelectedCar(storage.getString('selectedCarId'));
   }, []);
 
   const emptyListComponent = () => (
@@ -58,12 +74,16 @@ const CarList = ({navigation}) => {
             fetchCars();
           }}
           renderItem={({item}) => {
-            console.log(item);
             return (
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
                   navigation.navigate('CarDetail', {carId: item.id})
+                }
+                onLongPress={() => {
+                  storage.set('selectedCarId', String(item.id));
+                  setSelectedCar(storage.getString('selectedCarId'));
+                }
                 }>
                 <Card
                   containerStyle={styles.baseBackground}
@@ -76,7 +96,7 @@ const CarList = ({navigation}) => {
                     <Ionicons
                       name={'car-sport-outline'}
                       size={80}
-                      color={'#0e92ffff'}
+                      color={selectedCar === item.id ? '#0e92ffff' : 'grey'}
                     />
                     <View>
                       <Text style={styles.baseText}>
@@ -85,6 +105,11 @@ const CarList = ({navigation}) => {
                       <Text style={styles.baseText}>
                         Build year: {item.buildYear}
                       </Text>
+                      {selectedCar === item.id ? (
+                        <Text>Active</Text>
+                      ) : (
+                        <Text></Text>
+                      )}
                     </View>
                   </View>
                 </Card>
@@ -101,7 +126,7 @@ const CarList = ({navigation}) => {
         placement="right"
         icon={{name: 'add', color: 'white'}}
         color="#0e92ff"
-        onPress={() => navigation.navigate('Carform')}
+        onPress={() => navigation.navigate('Carform', {modalType: 'add'})}
       />
     </View>
   );
@@ -109,10 +134,10 @@ const CarList = ({navigation}) => {
 
 const CarScreen = ({navigation}) => {
   return (
-    <Stack.Navigator initialRouteName="Cars">
+    <Stack.Navigator initialRouteName="CarList">
       <Stack.Screen
         options={{headerShown: false}}
-        name="Cars"
+        name="CarList"
         component={CarList}
       />
       <Stack.Screen
