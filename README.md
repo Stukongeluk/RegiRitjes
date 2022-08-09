@@ -20,7 +20,8 @@ The only thing you need to do is arrange your own server, an android phone and y
     - [ ] Add From-to location
     - [ ] Add End-of-commute mileage
       - [ ] Calculate based on given From-to location
-- [ ] Add comments (Like took short-cut, alternative route, etc.)
+    - [ ] Add comments (Like took short-cut, alternative route, etc.)
+- [ ] Filter commute registrations
 - [ ] Exports to CSV and/or JSON
 
 ## API

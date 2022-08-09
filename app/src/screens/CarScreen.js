@@ -23,8 +23,6 @@ import {storage} from '../services/StorageProvider';
 const Stack = createNativeStackNavigator();
 
 const CarList = ({navigation}) => {
-  const [visible, setVisible] = React.useState(true);
-  const [carFormVisible, setCarFormVisible] = React.useState(false);
   const [cars, setCars] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const {colors} = useTheme();
@@ -83,8 +81,7 @@ const CarList = ({navigation}) => {
                 onLongPress={() => {
                   storage.set('selectedCarId', String(item.id));
                   setSelectedCar(storage.getString('selectedCarId'));
-                }
-                }>
+                }}>
                 <Card
                   containerStyle={styles.baseBackground}
                   pointerEvents="none">
@@ -122,7 +119,7 @@ const CarList = ({navigation}) => {
         />
       )}
       <FAB
-        visible={visible}
+        visible={true}
         placement="right"
         icon={{name: 'add', color: 'white'}}
         color="#0e92ff"

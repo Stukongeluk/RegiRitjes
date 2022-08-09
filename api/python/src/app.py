@@ -27,7 +27,7 @@ def start_api() -> FastAPI:
     commute_registration_repository = CommuteRegistrationRepo()
     commute_registration_serivce = CommuteRegistrationService(commute_registration_repository)
     commute_registration_controller = CommuteRegistrationController(commute_registration_serivce)
-    app.include_router(commute_registration_controller.router,tags=["Commute Registration"])
+    app.include_router(commute_registration_controller.router,tags=["Commute Registrations"])
 
     return app
 

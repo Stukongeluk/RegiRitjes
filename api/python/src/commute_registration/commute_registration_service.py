@@ -11,7 +11,10 @@ class CommuteRegistrationService():
         self.commute_registration_repo = commute_registration_repo
 
     def get_all_commute_registrations(self) -> List[Dict[str, Any]]:
-        return self.commute_registration_repo.find_all_commute_registrations()
+        commutes = self.commute_registration_repo.find_all_commute_registrations()
+        for commute in commutes:
+            commute.update((k, str(v)) for k, v in commute.items() if k == "id")
+        return commutes
     
     def get_commute_registration_csv(self, car_id: int, before_incl_date: datetime, after_excl_date: datetime) -> List[Dict[str, any]]:
         commutes = self.commute_registration_repo.find_all_commute_registrations_by_car_id(car_id)
@@ -27,7 +30,10 @@ class CommuteRegistrationService():
         return self.commute_registration_repo.find_commute_registration(commute_registration_id)
 
     def get_commute_registrations_by_car_id(self, car_id: int) -> List[Dict[str, Any]]:
-        return self.commute_registration_repo.find_all_commute_registrations_by_car_id(car_id)
+        commutes = self.commute_registration_repo.find_all_commute_registrations_by_car_id(car_id)
+        for commute in commutes:
+            commute.update((k, str(v)) for k, v in commute.items() if k == "id")
+        return commutes 
 
     def add_commute_registration(self, commute_registration: CommuteRegistration) -> int:
         return self.commute_registration_repo.save_commute_registration(commute_registration)

@@ -11,8 +11,8 @@ class CommuteRegistrationController():
     def __init__(self, commute_registration_service: CommuteRegistrationService) -> None:
         self.commute_registration_service = commute_registration_service
         self.router = APIRouter(
-            prefix="/commute_registration",
-            tags=["Commute Registration"]
+            prefix="/commute_registrations",
+            tags=["Commute Registrations"]
         )
 
         @self.router.get("/")
